@@ -21,8 +21,8 @@ class BasicDesignScreen extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: const Text(
-              'Officia in aliquip consectetur nostrud id deserunt reprehenderit nulla ea. Esse aute id nulla exercitation mollit voluptate sit aute sunt excepteur deserunt officia est. Irure enim officia consequat nisi et in eiusmod id aliqua. Reprehenderit magna proident labore magna sunt. Lorem esse esse aute ea ex officia sit eiusmod esse. Aliqua proident nisi esse voluptate ullamco et mollit occaecat labore Lorem aute occaecat eiusmod.'),
-        )
+              'Desde hace más de 50 años, en TMA trabajamos día tras día para ofrecer a nuestros clientes un servicio de calidad inmejorable, garantizando un cuidado óptimo del Medio Ambiente basado en la economía circular y en nuestra filosofía Zerowaste.'),
+        ),
       ],
     ));
   }
