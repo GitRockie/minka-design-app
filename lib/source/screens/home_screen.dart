@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/background.dart';
+import '../widgets/card_table.dart';
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/page_title.dart';
 
@@ -34,6 +35,8 @@ class _HomeBody extends StatelessWidget {
       child: Column(children: const [
         //Titles
         PageTitle(),
+        //Card Table
+        CardTable()
       ]),
     );
   }
