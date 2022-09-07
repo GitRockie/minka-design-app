@@ -8,7 +8,7 @@ class PageTitle extends StatelessWidget {
     return SafeArea(
       bottom: false,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
