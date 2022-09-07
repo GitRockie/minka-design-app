@@ -14,7 +14,7 @@ class CustomBottomNavigation extends StatelessWidget {
       currentIndex: 0,
       items: const [
         BottomNavigationBarItem(
-            icon: Icon(Icons.event_note_outlined), label: 'Event'),
+            icon: Icon(Icons.dashboard_outlined), label: 'Event'),
         BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart_outlined), label: 'Project'),
         BottomNavigationBarItem(

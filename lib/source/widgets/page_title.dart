@@ -13,7 +13,7 @@ class PageTitle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Text(
-              'Welcome Welcome to the 4.0 Industrial Revolution!',
+              'Welcome to the 4.0 Industrial Revolution!',
               style: TextStyle(
                   fontSize: 25,
                   color: Colors.white,
@@ -23,7 +23,7 @@ class PageTitle extends StatelessWidget {
               height: 15,
             ),
             Text(
-              'Revolutionary HR-Concept is here.',
+              'Revolutionary HR-Concept! Minka is here.',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,

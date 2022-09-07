@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CardTable extends StatelessWidget {
@@ -14,8 +16,8 @@ class CardTable extends StatelessWidget {
               text: 'Project Now'),
           _SingleCard(
               colorContent: Colors.pinkAccent,
-              icon: Icons.notifications_outlined,
-              text: 'Notifications'),
+              icon: Icons.person_search_outlined,
+              text: 'Match Finder'),
         ]),
         TableRow(children: [
           _SingleCard(
@@ -34,8 +36,8 @@ class CardTable extends StatelessWidget {
               text: 'Support'),
           _SingleCard(
               colorContent: Colors.cyan,
-              icon: Icons.person_search_outlined,
-              text: 'Match Finder'),
+              icon: Icons.notifications_active_outlined,
+              text: 'Notifications'),
         ]),
       ],
     );
@@ -56,28 +58,37 @@ class _SingleCard extends StatelessWidget {
         color: const Color.fromRGBO(62, 67, 107, 0.7),
         borderRadius: BorderRadius.circular(20));
     return Container(
-      margin: const EdgeInsets.all(15),
-      height: 180,
-      decoration: boxDecoration,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: colorContent,
-            radius: 30,
-            child: Icon(
-              icon,
-              size: 35,
+      margin: const EdgeInsets.all(10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            height: 180,
+            decoration: boxDecoration,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: colorContent,
+                  radius: 30,
+                  child: Icon(
+                    icon,
+                    size: 35,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(color: colorContent, fontSize: 14),
+                )
+              ],
             ),
           ),
-          const SizedBox(
-            height: 35,
-          ),
-          Text(
-            text,
-            style: TextStyle(color: colorContent, fontSize: 14),
-          )
-        ],
+        ),
       ),
     );
   }
