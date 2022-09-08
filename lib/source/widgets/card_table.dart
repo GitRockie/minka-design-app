@@ -21,21 +21,21 @@ class CardTable extends StatelessWidget {
         ]),
         TableRow(children: [
           _SingleCard(
-              colorContent: Colors.indigo,
+              colorContent: Colors.cyan,
               icon: Icons.hotel_class_outlined,
               text: 'Raitings'),
           _SingleCard(
               colorContent: Colors.teal,
               icon: Icons.qr_code_outlined,
-              text: 'Contracts'),
+              text: 'QR-Reader'),
         ]),
         TableRow(children: [
           _SingleCard(
-              colorContent: Colors.deepPurple,
+              colorContent: Colors.indigo,
               icon: Icons.support_agent_outlined,
-              text: 'Support'),
+              text: 'Minka Support'),
           _SingleCard(
-              colorContent: Colors.cyan,
+              colorContent: Colors.orange,
               icon: Icons.notifications_active_outlined,
               text: 'Notifications'),
         ]),
@@ -54,9 +54,38 @@ class _SingleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxDecoration = BoxDecoration(
-        color: const Color.fromRGBO(62, 67, 107, 0.7),
-        borderRadius: BorderRadius.circular(20));
+    return _CardBackground(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          backgroundColor: colorContent,
+          radius: 30,
+          child: Icon(
+            icon,
+            size: 35,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(
+          height: 35,
+        ),
+        Text(
+          text,
+          style: TextStyle(color: colorContent, fontSize: 14),
+        )
+      ],
+    ));
+  }
+}
+
+class _CardBackground extends StatelessWidget {
+  final Widget child;
+
+  const _CardBackground({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
       child: ClipRRect(
@@ -65,28 +94,10 @@ class _SingleCard extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Container(
             height: 180,
-            decoration: boxDecoration,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: colorContent,
-                  radius: 30,
-                  child: Icon(
-                    icon,
-                    size: 35,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(color: colorContent, fontSize: 14),
-                )
-              ],
-            ),
+            decoration: BoxDecoration(
+                color: const Color.fromRGBO(62, 67, 107, 0.7),
+                borderRadius: BorderRadius.circular(20)),
+            child: child,
           ),
         ),
       ),
