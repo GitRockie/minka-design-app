@@ -6,6 +6,7 @@ class CustomBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 0,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedItemColor: Colors.pinkAccent,
@@ -13,12 +14,9 @@ class CustomBottomNavigation extends StatelessWidget {
       unselectedItemColor: const Color.fromRGBO(116, 117, 152, 1),
       currentIndex: 0,
       items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_outlined), label: 'Event'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart_outlined), label: 'Project'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.people_outlined), label: 'Work'),
+            icon: Icon(Icons.explore_outlined), label: 'Directions'),
       ],
     );
   }

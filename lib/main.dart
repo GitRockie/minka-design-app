@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'home_screen',
-      theme: ThemeData.dark(),
+      initialRoute: 'qr_reader_screen',
+      theme: ThemeData.light(),
       routes: {
         'qr_reader_screen': (_) => const QrReaderScreen(),
         'map_screen': (_) => const MapScreen(),
