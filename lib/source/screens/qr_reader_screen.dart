@@ -21,7 +21,7 @@ class QrReaderScreen extends StatelessWidget {
       body: Stack(children: const [
         Background(),
         Center(
-          child: Text('QrReader!!!Screen'),
+          child: Text('QrReaderScreen'),
         ),
       ]),
       floatingActionButton: const ScanButton(),

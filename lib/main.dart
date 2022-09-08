@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       initialRoute: 'qr_reader_screen',
-      theme: ThemeData.light(),
       routes: {
         'qr_reader_screen': (_) => const QrReaderScreen(),
         'map_screen': (_) => const MapScreen(),
@@ -28,6 +27,10 @@ class MyApp extends StatelessWidget {
         'basic_design': (_) => const BasicDesignScreen(),
         'scroll_screen': (_) => const ScrollDesignScreen(),
       },
+      theme: ThemeData(
+          primaryColor: Colors.deepPurple,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              backgroundColor: Colors.deepPurple)),
     );
   }
 }
