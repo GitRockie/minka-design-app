@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/providers/ui_provider.dart';
 import 'package:minka_design_app/source/screens/directions_screen.dart';
 import 'package:minka_design_app/source/widgets/background.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/scan_button.dart';
@@ -33,7 +35,9 @@ class _QrReaderScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const currentIndex = 0;
+    //Selected menu Opt
+    final uiProvider = Provider.of<UiProvider>(context);
+    final currentIndex = uiProvider.selectedMenuOpt;
 
     switch (currentIndex) {
       case 0:
