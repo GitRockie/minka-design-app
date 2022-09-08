@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/screens/directions_screen.dart';
 import 'package:minka_design_app/source/widgets/background.dart';
 
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/scan_button.dart';
+import 'maps_history_screen.dart';
 
 class QrReaderScreen extends StatelessWidget {
   const QrReaderScreen({Key? key}) : super(key: key);
@@ -18,15 +20,30 @@ class QrReaderScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever))
         ],
       ),
-      body: Stack(children: const [
-        Background(),
-        Center(
-          child: Text('QrReaderScreen'),
-        ),
-      ]),
+      body: Stack(children: const [Background(), _QrReaderScreenBody()]),
       floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const CustomBottomNavigation(),
     );
+  }
+}
+
+class _QrReaderScreenBody extends StatelessWidget {
+  const _QrReaderScreenBody();
+
+  @override
+  Widget build(BuildContext context) {
+    const currentIndex = 0;
+
+    switch (currentIndex) {
+      case 0:
+        return const MapsHistoryScreen();
+
+      case 1:
+        return const DirectionsScreen();
+
+      default:
+        return const MapsHistoryScreen();
+    }
   }
 }
