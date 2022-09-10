@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:minka_design_app/providers/ui_provider.dart';
+import 'package:minka_design_app/source/providers/ui_provider.dart';
 
 import 'package:minka_design_app/source/screens/basic_design.dart';
 import 'package:minka_design_app/source/screens/home_screen.dart';
