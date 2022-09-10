@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:minka_design_app/source/providers/db_provider.dart';
 import 'package:minka_design_app/source/providers/ui_provider.dart';
-import 'package:minka_design_app/source/screens/directions_screen.dart';
-import 'package:minka_design_app/source/widgets/background.dart';
 import 'package:provider/provider.dart';
 
+import 'package:minka_design_app/source/screens/directions_screen.dart';
+import 'package:minka_design_app/source/widgets/background.dart';
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/scan_button.dart';
 import 'maps_history_screen.dart';
@@ -38,6 +40,9 @@ class _QrReaderScreenBody extends StatelessWidget {
     //Selected menu Opt
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    //TODO: Temporary DB reading
+    DBProvider.db.database;
 
     switch (currentIndex) {
       case 0:
