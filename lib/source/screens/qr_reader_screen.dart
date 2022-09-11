@@ -42,8 +42,8 @@ class _QrReaderScreenBody extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
 
     //TODO: Temporary DB reading
-    final tempScan = ScanModel(value: 'http://doitminka.com');
-    DBProvider.db.newScan(tempScan);
+    //final tempScan = ScanModel(value: 'http://doitminka.com');
+    //DBProvider.db.deleteAllScan().then(print);
 
     switch (currentIndex) {
       case 0:
