@@ -4,6 +4,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:minka_design_app/source/models/scan_model.dart';
+export 'package:minka_design_app/source/models/scan_model.dart';
+
 class DBProvider {
   static Database? _database;
   static final DBProvider db = DBProvider._();
@@ -36,5 +39,29 @@ class DBProvider {
           
           ''');
     });
+  }
+
+  Future<int?> newScanRaw(ScanModel newScan) async {
+    final id = newScan.id;
+    final type = newScan.type;
+    final value = newScan.value;
+    //Verifuying DB
+    final db = await database;
+
+    final res = await db?.rawInsert('''
+
+      INSERT INTO Scans ( id, type, value )
+      VALUES ( $id, '$type','$value' )
+    
+    ''');
+
+    return res;
+  }
+
+  Future<int?> newScan(ScanModel newScan) async {
+    final db = await database;
+    final res = await db?.insert('Scans', newScan.toJson());
+    print(res);
+    return res;
   }
 }
