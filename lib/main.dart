@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:minka_design_app/source/providers/scan_list_provider.dart';
 import 'package:minka_design_app/source/providers/ui_provider.dart';
 
 import 'package:minka_design_app/source/screens/basic_design.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UiProvider()),
+        ChangeNotifierProvider(create: (_) => ScanListProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
