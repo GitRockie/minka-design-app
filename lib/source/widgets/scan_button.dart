@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:minka_design_app/source/utils/utils.dart';
 
 //import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
@@ -30,8 +31,9 @@ class ScanButton extends StatelessWidget {
             final scanListProvider =
                 Provider.of<ScanListProvider>(context, listen: false);
 
-            scanListProvider.newScan(barcodeScanRes);
-            scanListProvider.newScan('geo: 15.55,15.75');
+            final newScan = await scanListProvider.newScan(barcodeScanRes);
+
+            launchURL(context, newScan);
           } on PlatformException catch (e) {
 //never calling
             throw Exception(e.message);

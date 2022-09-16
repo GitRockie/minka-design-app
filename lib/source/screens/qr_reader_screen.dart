@@ -51,14 +51,14 @@ class _QrReaderScreenBody extends StatelessWidget {
     switch (currentIndex) {
       case 0:
         scanListProvider.loadScansByType('geo');
-        return const MapsHistoryScreen();
+        return MapsHistoryScreen();
 
       case 1:
         scanListProvider.loadScansByType('http');
         return const DirectionsScreen();
 
       default:
-        return const MapsHistoryScreen();
+        return MapsHistoryScreen();
     }
   }
 }
