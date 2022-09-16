@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/scan_list_provider.dart';
 
 class MapsHistoryScreen extends StatelessWidget {
   const MapsHistoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final scanListProvider = Provider.of<ScanListProvider>(context);
+    final scans = scanListProvider.scans;
     return ListView.builder(
-        itemCount: 10,
+        itemCount: scans.length,
         itemBuilder: (_, i) => ListTile(
             leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
-            title: const Text('http://scanshere'),
-            subtitle: const Text('ID: 12345'),
+            title: Text(scans[i].value),
+            subtitle: Text(scans[i].id.toString()),
             trailing: const Icon(
               Icons.keyboard_arrow_right,
               color: Colors.grey,
             ),
-            onTap: (() => print('open smth'))));
+            onTap: (() => print(scans[i].id))));
   }
 }
