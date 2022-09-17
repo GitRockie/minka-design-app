@@ -1,9 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.minka_design_app">
+  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>  
    <application
         android:label="minka_design_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAdmg0Fo9KzIQjy1RIYeyje6K_Le166Vws"/>
+               
         <activity
             android:name=".MainActivity"
             android:exported="true"
