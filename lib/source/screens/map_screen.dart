@@ -12,7 +12,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class MapScreenState extends State<MapScreen> {
-  Completer<GoogleMapController> conTroller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   MapType mapType = MapType.normal;
 
@@ -35,7 +35,7 @@ class MapScreenState extends State<MapScreen> {
         actions: [
           IconButton(
               onPressed: () async {
-                final GoogleMapController controller = await conTroller.future;
+                final GoogleMapController controller = await _controller.future;
                 controller.animateCamera(CameraUpdate.newCameraPosition(
                     CameraPosition(
                         target: scan.getLatLng(), zoom: 17.5, tilt: 50)));
@@ -49,7 +49,7 @@ class MapScreenState extends State<MapScreen> {
         markers: markers,
         initialCameraPosition: positionStartPoint,
         onMapCreated: ((controller) {
-          conTroller.complete(controller);
+          _controller.complete(controller);
         }),
       ),
       floatingActionButton: FloatingActionButton(
