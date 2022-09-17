@@ -7,6 +7,7 @@ import 'package:minka_design_app/source/screens/basic_design.dart';
 import 'package:minka_design_app/source/screens/home_screen.dart';
 import 'package:minka_design_app/source/screens/map_screen.dart';
 import 'package:minka_design_app/source/screens/scroll_design.dart';
+import 'package:minka_design_app/source/screens/settings_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'source/screens/qr_reader_screen.dart';
@@ -27,13 +28,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: 'home_screen',
+        initialRoute: HomeScreen.routerName,
         routes: {
-          'qr_reader_screen': (_) => const QrReaderScreen(),
-          'map_screen': (_) => const MapScreen(),
-          'home_screen': (_) => const HomeScreen(),
-          'basic_design': (_) => const BasicDesignScreen(),
-          'scroll_screen': (_) => const ScrollDesignScreen(),
+          HomeScreen.routerName: (_) => const HomeScreen(),
+          QrReaderScreen.routerName: (_) => const QrReaderScreen(),
+          MapScreen.routerName: (_) => const MapScreen(),
+          SettingsScreen.routerName: (_) => const SettingsScreen(),
+          BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
+          ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
         },
         theme: ThemeData(
             primaryColor: Colors.deepPurple,

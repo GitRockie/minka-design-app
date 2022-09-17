@@ -12,6 +12,7 @@ import 'maps_history_screen.dart';
 
 class QrReaderScreen extends StatelessWidget {
   const QrReaderScreen({Key? key}) : super(key: key);
+  static const String routerName = 'QR_reader';
 
   @override
   Widget build(BuildContext context) {

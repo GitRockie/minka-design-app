@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class BasicDesignScreen extends StatelessWidget {
   const BasicDesignScreen({Key? key}) : super(key: key);
 
+  static const String routerName = 'Basic_design';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

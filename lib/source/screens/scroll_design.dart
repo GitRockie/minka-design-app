@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ScrollDesignScreen extends StatelessWidget {
+  static const String routerName = 'Scroll_design';
   final boxDecoration = const BoxDecoration(
       gradient: LinearGradient(
     begin: Alignment.topCenter,
