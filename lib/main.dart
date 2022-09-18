@@ -3,14 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:minka_design_app/source/providers/scan_list_provider.dart';
 import 'package:minka_design_app/source/providers/ui_provider.dart';
 
-import 'package:minka_design_app/source/screens/basic_design.dart';
-import 'package:minka_design_app/source/screens/home_screen.dart';
-import 'package:minka_design_app/source/screens/map_screen.dart';
-import 'package:minka_design_app/source/screens/scroll_design.dart';
-import 'package:minka_design_app/source/screens/settings_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:minka_design_app/source/screens/screens.dart';
 
-import 'source/screens/qr_reader_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -31,6 +26,7 @@ class MyApp extends StatelessWidget {
         initialRoute: HomeScreen.routerName,
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
+          PreferencesScreen.routerName: (_) => const PreferencesScreen(),
           QrReaderScreen.routerName: (_) => const QrReaderScreen(),
           MapScreen.routerName: (_) => const MapScreen(),
           SettingsScreen.routerName: (_) => const SettingsScreen(),
