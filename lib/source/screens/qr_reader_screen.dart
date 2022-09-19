@@ -8,6 +8,7 @@ import 'package:minka_design_app/source/screens/directions_screen.dart';
 
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/scan_button.dart';
+import '../widgets/side_menu.dart';
 import 'maps_history_screen.dart';
 
 class QrReaderScreen extends StatelessWidget {
@@ -25,6 +26,7 @@ class QrReaderScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever))
         ],
       ),
+      drawer: const SideMenu(),
       body: Stack(children: const [_QrReaderScreenBody()]),
       floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
