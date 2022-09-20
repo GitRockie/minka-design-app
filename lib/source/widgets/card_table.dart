@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/screens/screens.dart';
 
 class CardTable extends StatelessWidget {
   const CardTable({super.key});
@@ -8,36 +9,54 @@ class CardTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      children: const [
+      children: [
         TableRow(children: [
-          _SingleCard(
-              colorContent: Colors.amber,
-              icon: Icons.engineering_outlined,
-              text: 'Project Now'),
-          _SingleCard(
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, BasicDesignScreen.routerName);
+            },
+            child: const _SingleCard(
+                colorContent: Colors.amber,
+                icon: Icons.engineering_outlined,
+                text: 'Project Now'),
+          ),
+          const _SingleCard(
               colorContent: Colors.pinkAccent,
               icon: Icons.person_search_outlined,
               text: 'Match Finder'),
         ]),
         TableRow(children: [
-          _SingleCard(
+          const _SingleCard(
               colorContent: Colors.cyan,
               icon: Icons.hotel_class_outlined,
               text: 'Raitings'),
-          _SingleCard(
-              colorContent: Colors.teal,
-              icon: Icons.qr_code_outlined,
-              text: 'QR-Reader'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, QrReaderScreen.routerName);
+            },
+            child: const _SingleCard(
+                colorContent: Colors.teal,
+                icon: Icons.qr_code_outlined,
+                text: 'QR-Reader'),
+          ),
         ]),
         TableRow(children: [
-          _SingleCard(
+          const _SingleCard(
               colorContent: Colors.indigo,
               icon: Icons.support_agent_outlined,
               text: 'Minka Support'),
-          _SingleCard(
-              colorContent: Colors.orange,
-              icon: Icons.notifications_active_outlined,
-              text: 'Notifications'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, ScrollDesignScreen.routerName);
+            },
+            child: const _SingleCard(
+                colorContent: Colors.orange,
+                icon: Icons.notifications_active_outlined,
+                text: 'Notifications'),
+          ),
         ]),
       ],
     );
