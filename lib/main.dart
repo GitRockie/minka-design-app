@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:minka_design_app/source/providers/scan_list_provider.dart';
+import 'package:minka_design_app/source/providers/theme_provider.dart';
 import 'package:minka_design_app/source/providers/ui_provider.dart';
 
 import 'package:minka_design_app/source/screens/screens.dart';
@@ -11,7 +12,13 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.init();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkmode))
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +45,7 @@ class MyApp extends StatelessWidget {
           BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
           ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
         },
-        theme: Preferences.isDarkmode ? ThemeData.dark() : ThemeData.light(),
+        theme: Provider.of<ThemeProvider>(context).currentTheme,
       ),
     );
   }

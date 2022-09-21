@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/providers/theme_provider.dart';
 import 'package:minka_design_app/source/share_preferences/preferences.dart';
 import 'package:minka_design_app/source/widgets/side_menu.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -40,6 +42,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     title: const Text('Darkmode'),
                     onChanged: (value) {
                       Preferences.isDarkmode = value;
+                      final themeProvider =
+                          Provider.of<ThemeProvider>(context, listen: false);
+                      value
+                          ? themeProvider.setDarkmode()
+                          : themeProvider.setLightmode();
                       setState(() {});
                     }),
                 const Divider(),
