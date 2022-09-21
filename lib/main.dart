@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
           BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
           ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
         },
-        theme: Provider.of<ThemeProvider>(context).currentTheme,
+        theme: Provider.of<ThemeProvider>(context)
+            .currentTheme
+            .copyWith(scaffoldBackgroundColor: Colors.grey[300]),
       ),
     );
   }
