@@ -35,9 +35,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        initialRoute: HomeScreen.routerName,
+        initialRoute: LoginScreen.routerName,
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
+          LoginScreen.routerName: (_) => const LoginScreen(),
           PreferencesScreen.routerName: (_) => const PreferencesScreen(),
           QrReaderScreen.routerName: (_) => const QrReaderScreen(),
           MapScreen.routerName: (_) => const MapScreen(),
