@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
           ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
         },
-        theme: ThemeData.light(),
+        theme: Preferences.isDarkmode ? ThemeData.dark() : ThemeData.light(),
       ),
     );
   }
