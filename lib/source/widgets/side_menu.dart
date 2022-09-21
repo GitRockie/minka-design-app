@@ -22,7 +22,7 @@ class SideMenu extends StatelessWidget {
               title: const Text('Preferences'),
               onTap: () {
                 Navigator.pushReplacementNamed(
-                    context, QrReaderScreen.routerName);
+                    context, PreferencesScreen.routerName);
               }),
           ListTile(
               leading: const Icon(Icons.settings_outlined),

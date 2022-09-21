@@ -27,10 +27,16 @@ class CardTable extends StatelessWidget {
               text: 'Match Finder'),
         ]),
         TableRow(children: [
-          const _SingleCard(
-              colorContent: Colors.cyan,
-              icon: Icons.hotel_class_outlined,
-              text: 'Raitings'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, BasicDesignScreen.routerName);
+            },
+            child: const _SingleCard(
+                colorContent: Colors.cyan,
+                icon: Icons.hotel_class_outlined,
+                text: 'Raitings'),
+          ),
           GestureDetector(
             onTap: () {
               Navigator.pushReplacementNamed(
