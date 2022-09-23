@@ -34,12 +34,12 @@ class _PurpleBox extends StatelessWidget {
             child: _Bubble(),
           ),
           Positioned(
-            top: -40,
+            top: 40,
             left: -30,
             child: _Bubble(),
           ),
           Positioned(
-            top: -50,
+            top: 30,
             right: -20,
             child: _Bubble(),
           ),

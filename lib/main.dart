@@ -33,23 +33,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ScanListProvider()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        initialRoute: LoginScreen.routerName,
-        routes: {
-          HomeScreen.routerName: (_) => const HomeScreen(),
-          LoginScreen.routerName: (_) => const LoginScreen(),
-          PreferencesScreen.routerName: (_) => const PreferencesScreen(),
-          QrReaderScreen.routerName: (_) => const QrReaderScreen(),
-          MapScreen.routerName: (_) => const MapScreen(),
-          SettingsScreen.routerName: (_) => const SettingsScreen(),
-          BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
-          ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
-        },
-        theme: Provider.of<ThemeProvider>(context)
-            .currentTheme
-            .copyWith(scaffoldBackgroundColor: Colors.grey[300]),
-      ),
+          debugShowCheckedModeBanner: false,
+          title: 'Material App',
+          initialRoute: LoginScreen.routerName,
+          routes: {
+            HomeScreen.routerName: (_) => const HomeScreen(),
+            LoginScreen.routerName: (_) => const LoginScreen(),
+            PreferencesScreen.routerName: (_) => const PreferencesScreen(),
+            QrReaderScreen.routerName: (_) => const QrReaderScreen(),
+            MapScreen.routerName: (_) => const MapScreen(),
+            SettingsScreen.routerName: (_) => const SettingsScreen(),
+            BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
+            ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
+          },
+          theme: Provider.of<ThemeProvider>(context).currentTheme),
     );
   }
 }
