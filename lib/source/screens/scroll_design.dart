@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/side_menu.dart';
+
 class ScrollDesignScreen extends StatelessWidget {
+  static const String routerName = 'Scroll_design';
   final boxDecoration = const BoxDecoration(
       gradient: LinearGradient(
     begin: Alignment.topCenter,
@@ -13,6 +16,11 @@ class ScrollDesignScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('My Notifications'),
+      ),
+      drawer: const SideMenu(),
       body: Container(
         decoration: boxDecoration,
         child: PageView(

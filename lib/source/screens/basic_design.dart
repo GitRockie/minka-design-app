@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/widgets/side_menu.dart';
 
 class BasicDesignScreen extends StatelessWidget {
   const BasicDesignScreen({Key? key}) : super(key: key);
 
+  static const String routerName = 'Basic_design';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text('Project Now'),
+        ),
+        drawer: const SideMenu(),
         body: Column(
-      children: [
-        const Image(
-          image: AssetImage('assets/port-bay.jpg'),
-        ),
+          children: [
+            const Image(
+              image: AssetImage('assets/port-bay.jpg'),
+            ),
 
-        //Title Widget
-        const Title(),
+            //Title Widget
+            const Title(),
 
-        //Button section
-        const ButtonSection(),
+            //Button section
+            const ButtonSection(),
 
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: const Text(
-              'Desde hace más de 50 años, en TMA trabajamos día tras día para ofrecer a nuestros clientes un servicio de calidad inmejorable, garantizando un cuidado óptimo del Medio Ambiente basado en la economía circular y en nuestra filosofía Zerowaste.'),
-        ),
-      ],
-    ));
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: const Text(
+                  'Desde hace más de 50 años, en TMA trabajamos día tras día para ofrecer a nuestros clientes un servicio de calidad inmejorable, garantizando un cuidado óptimo del Medio Ambiente basado en la economía circular y en nuestra filosofía Zerowaste.'),
+            ),
+          ],
+        ));
   }
 }
 

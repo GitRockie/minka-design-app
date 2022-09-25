@@ -6,6 +6,7 @@ import 'package:minka_design_app/source/models/scan_model.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
+  static const String routerName = 'map_screen';
 
   @override
   MapScreenState createState() => MapScreenState();

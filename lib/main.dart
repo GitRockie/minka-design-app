@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:minka_design_app/source/providers/scan_list_provider.dart';
+import 'package:minka_design_app/source/providers/theme_provider.dart';
 import 'package:minka_design_app/source/providers/ui_provider.dart';
 
-import 'package:minka_design_app/source/screens/basic_design.dart';
-import 'package:minka_design_app/source/screens/home_screen.dart';
-import 'package:minka_design_app/source/screens/map_screen.dart';
-import 'package:minka_design_app/source/screens/scroll_design.dart';
+import 'package:minka_design_app/source/screens/screens.dart';
+import 'package:minka_design_app/source/share_preferences/preferences.dart';
+
 import 'package:provider/provider.dart';
 
-import 'source/screens/qr_reader_screen.dart';
-
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkmode))
+    ],
+    child: const MyApp(),
+  ));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -25,21 +33,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ScanListProvider()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        initialRoute: 'qr_reader_screen',
-        routes: {
-          'qr_reader_screen': (_) => const QrReaderScreen(),
-          'map_screen': (_) => const MapScreen(),
-          'home_screen': (_) => const HomeScreen(),
-          'basic_design': (_) => const BasicDesignScreen(),
-          'scroll_screen': (_) => const ScrollDesignScreen(),
-        },
-        theme: ThemeData(
-            primaryColor: Colors.deepPurple,
-            floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                backgroundColor: Colors.deepPurple)),
-      ),
+          debugShowCheckedModeBanner: false,
+          title: 'Material App',
+          initialRoute: LoginScreen.routerName,
+          routes: {
+            HomeScreen.routerName: (_) => const HomeScreen(),
+            LoginScreen.routerName: (_) => const LoginScreen(),
+            PreferencesScreen.routerName: (_) => const PreferencesScreen(),
+            QrReaderScreen.routerName: (_) => const QrReaderScreen(),
+            MapScreen.routerName: (_) => const MapScreen(),
+            SettingsScreen.routerName: (_) => const SettingsScreen(),
+            BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
+            ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
+          },
+          theme: Provider.of<ThemeProvider>(context).currentTheme),
     );
   }
 }
