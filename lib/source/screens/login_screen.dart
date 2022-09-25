@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/providers/login_form_provider.dart';
+import 'package:minka_design_app/source/screens/home_screen.dart';
 import 'package:minka_design_app/source/ui/input_decotations.dart';
 import 'package:minka_design_app/source/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routerName = 'login_screen';
@@ -26,7 +29,10 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                _LoginForm(),
+                ChangeNotifierProvider(
+                  create: (_) => LoginFormProvider(),
+                  child: _LoginForm(),
+                ),
               ],
             ),
           ),
@@ -49,29 +55,48 @@ class LoginScreen extends StatelessWidget {
 class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginFormProvider>(context);
     return Container(
       child: Form(
-        //TODO: mantain the KEY reference
+        key: loginForm.formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             TextFormField(
-                autocorrect: false,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecorations.authInputDecoration(
-                    hintText: 'minker.user@gmail.com',
-                    labelText: 'Email',
-                    prefixIcon: Icons.alternate_email_sharp)),
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: 'minker.user@gmail.com',
+                  labelText: 'Email',
+                  prefixIcon: Icons.alternate_email_sharp),
+              onChanged: (value) => loginForm.email = value,
+              validator: (value) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = RegExp(pattern);
+                return regExp.hasMatch(value ?? '')
+                    ? null
+                    : 'Email is incorrect';
+              },
+            ),
             const SizedBox(
               height: 30,
             ),
             TextFormField(
-                autocorrect: false,
-                obscureText: true,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecorations.authInputDecoration(
-                    hintText: '******',
-                    labelText: 'Password',
-                    prefixIcon: Icons.lock_clock_sharp)),
+              autocorrect: false,
+              obscureText: true,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: '******',
+                  labelText: 'Password',
+                  prefixIcon: Icons.lock_clock_sharp),
+              onChanged: (value) => loginForm.password = value,
+              validator: (value) {
+                return (value != null && value.length >= 6)
+                    ? null
+                    : 'The password is incorrect';
+              },
+            ),
             const SizedBox(
               height: 50,
             ),
@@ -89,7 +114,11 @@ class _LoginForm extends StatelessWidget {
                       'Login',
                       style: TextStyle(color: Colors.white),
                     )),
-                onPressed: () {})
+                onPressed: () {
+                  if (!loginForm.isValidForm()) return;
+                  Navigator.pushReplacementNamed(
+                      context, HomeScreen.routerName);
+                })
           ],
         ),
       ),
