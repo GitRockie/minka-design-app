@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/screens/documents_screen.dart';
 import 'package:minka_design_app/source/screens/screens.dart';
 
 class CardTable extends StatelessWidget {
@@ -56,12 +57,12 @@ class CardTable extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.pushReplacementNamed(
-                  context, ScrollDesignScreen.routerName);
+                  context, DocumentsScreen.routerName);
             },
             child: const _SingleCard(
                 colorContent: Colors.orange,
-                icon: Icons.notifications_active_outlined,
-                text: 'Notifications'),
+                icon: Icons.source_sharp,
+                text: 'Documents'),
           ),
         ]),
       ],
