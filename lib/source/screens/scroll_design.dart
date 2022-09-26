@@ -18,7 +18,7 @@ class ScrollDesignScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('My Notifications'),
+        title: const Text('My Documents'),
       ),
       drawer: const SideMenu(),
       body: Container(
