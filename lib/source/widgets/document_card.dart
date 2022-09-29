@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DocumentCard extends StatelessWidget {
-  const DocumentCard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,9 +13,9 @@ class DocumentCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            const _BackgroundImage(),
+            _BackgroundImage(),
             const _DocumentDetails(),
-            const Positioned(top: 0, right: 0, child: _PriceTag()),
+            Positioned(top: 0, right: 0, child: _PriceTag()),
             //TODO: Conditional way appears
             Positioned(top: 0, left: 0, child: _NotAvailable()),
           ],
@@ -65,10 +63,6 @@ class _NotAvailable extends StatelessWidget {
 }
 
 class _PriceTag extends StatelessWidget {
-  const _PriceTag({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -144,10 +138,6 @@ class _DocumentDetails extends StatelessWidget {
 }
 
 class _BackgroundImage extends StatelessWidget {
-  const _BackgroundImage({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

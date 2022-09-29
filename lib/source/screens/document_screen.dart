@@ -15,7 +15,7 @@ class DocumentScreen extends StatelessWidget {
           children: [
             Stack(
               children: [
-                const DocumentImage(),
+                DocumentImage(),
                 Positioned(
                     top: 60,
                     left: 20,

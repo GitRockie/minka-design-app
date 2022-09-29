@@ -6,6 +6,7 @@ import '../widgets/side_menu.dart';
 
 class DocumentsScreen extends StatelessWidget {
   static const String routerName = 'documents';
+
   const DocumentsScreen({super.key});
 
   @override
@@ -21,7 +22,7 @@ class DocumentsScreen extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () =>
                   Navigator.pushNamed(context, DocumentScreen.routerName),
-              child: const DocumentCard())),
+              child: DocumentCard())),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add_a_photo_outlined),
