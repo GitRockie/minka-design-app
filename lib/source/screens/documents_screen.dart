@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:minka_design_app/source/screens/document_screen.dart';
-import 'package:minka_design_app/source/widgets/document_card.dart';
 
+import 'package:minka_design_app/source/widgets/document_card.dart';
+import 'package:provider/provider.dart';
+
+import '../services/services.dart';
 import '../widgets/side_menu.dart';
 
 class DocumentsScreen extends StatelessWidget {
@@ -11,6 +14,7 @@ class DocumentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final documentsService = Provider.of<DocumentsService>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

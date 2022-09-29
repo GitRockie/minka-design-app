@@ -6,32 +6,42 @@ import 'dart:convert';
 
 class Document {
   Document({
-    required this.avaliable,
+    required this.available,
     required this.name,
-    required this.picture,
+    picture,
+    id,
     required this.price,
   });
 
-  bool avaliable;
+  bool available;
   String name;
   String? picture;
   double price;
+  String? id;
 
   factory Document.fromJson(String str) => Document.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory Document.fromMap(Map<String, dynamic> json) => Document(
-        avaliable: json["avaliable"],
+        available: json["available"],
         name: json["name"],
         picture: json["picture"],
         price: json["price"].toDouble(),
       );
 
   Map<String, dynamic> toMap() => {
-        "avaliable": avaliable,
+        "available": available,
         "name": name,
         "picture": picture,
         "price": price,
       };
+
+  Document copy() => Document(
+        available: available,
+        name: name,
+        picture: picture,
+        price: price,
+        id: id,
+      );
 }
