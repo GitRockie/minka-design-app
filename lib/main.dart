@@ -6,6 +6,7 @@ import 'package:minka_design_app/source/providers/ui_provider.dart';
 import 'package:minka_design_app/source/screens/documents_screen.dart';
 
 import 'package:minka_design_app/source/screens/screens.dart';
+import 'package:minka_design_app/source/services/services.dart';
 import 'package:minka_design_app/source/share_preferences/preferences.dart';
 
 import 'package:provider/provider.dart';
@@ -16,7 +17,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkmode))
+          create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkmode)),
+      ChangeNotifierProvider(create: (_) => DocumentsService())
     ],
     child: const MyApp(),
   ));
