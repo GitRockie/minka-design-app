@@ -28,7 +28,7 @@ class DocumentScreen extends StatelessWidget {
                         ))),
                 Positioned(
                     top: 60,
-                    right: 30,
+                    right: 20,
                     child: IconButton(
                         onPressed: () {
                           //TODO: Camera or Galery
