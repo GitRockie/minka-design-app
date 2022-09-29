@@ -39,14 +39,15 @@ class MyApp extends StatelessWidget {
         initialRoute: DocumentsScreen.routerName,
         routes: {
           HomeScreen.routerName: (_) => const HomeScreen(),
-          LoginScreen.routerName: (_) => const LoginScreen(),
+          BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
           DocumentsScreen.routerName: (_) => const DocumentsScreen(),
+          DocumentScreen.routerName: (_) => const DocumentScreen(),
+          LoginScreen.routerName: (_) => const LoginScreen(),
+          MapScreen.routerName: (_) => const MapScreen(),
           PreferencesScreen.routerName: (_) => const PreferencesScreen(),
           QrReaderScreen.routerName: (_) => const QrReaderScreen(),
-          MapScreen.routerName: (_) => const MapScreen(),
-          SettingsScreen.routerName: (_) => const SettingsScreen(),
-          BasicDesignScreen.routerName: (_) => const BasicDesignScreen(),
           ScrollDesignScreen.routerName: (_) => const ScrollDesignScreen(),
+          SettingsScreen.routerName: (_) => const SettingsScreen(),
         },
         theme: Provider.of<ThemeProvider>(context).currentTheme.copyWith(
               appBarTheme:

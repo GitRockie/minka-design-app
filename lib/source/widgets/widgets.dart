@@ -1,3 +1,5 @@
+export 'package:minka_design_app/source/widgets/document_image.dart';
+
 export 'package:minka_design_app/source/screens/scroll_design.dart';
 export 'package:minka_design_app/source/widgets/auth_background.dart';
 export 'package:minka_design_app/source/widgets/card_container.dart';
