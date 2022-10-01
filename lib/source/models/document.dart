@@ -36,12 +36,4 @@ class Document {
         "picture": picture,
         "price": price,
       };
-
-  Document copy() => Document(
-        available: available,
-        name: name,
-        picture: picture,
-        price: price,
-        id: id,
-      );
 }

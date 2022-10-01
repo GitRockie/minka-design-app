@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/models/models.dart';
 
 class DocumentCard extends StatelessWidget {
+  final Document document;
+
+  const DocumentCard({super.key, required this.document});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,11 +18,14 @@ class DocumentCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            _BackgroundImage(),
-            const _DocumentDetails(),
-            Positioned(top: 0, right: 0, child: _PriceTag()),
-            //TODO: Conditional way appears
-            Positioned(top: 0, left: 0, child: _NotAvailable()),
+            _BackgroundImage(document.picture),
+            _DocumentDetails(
+              title: document.name,
+              subTitle: document.id!,
+            ),
+            Positioned(top: 0, right: 0, child: _PriceTag(document.price)),
+            if (!document.available)
+              Positioned(top: 0, left: 0, child: _NotAvailable()),
           ],
         ),
       ),
@@ -63,6 +71,9 @@ class _NotAvailable extends StatelessWidget {
 }
 
 class _PriceTag extends StatelessWidget {
+  final double price;
+
+  const _PriceTag(this.price);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,13 +85,13 @@ class _PriceTag extends StatelessWidget {
           color: Colors.indigo,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(25), bottomLeft: Radius.circular(25))),
-      child: const FittedBox(
+      child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '2089.95 EUR',
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            '$price',
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
       ),
@@ -89,8 +100,13 @@ class _PriceTag extends StatelessWidget {
 }
 
 class _DocumentDetails extends StatelessWidget {
+  final String title;
+  final String subTitle;
+
   const _DocumentDetails({
     Key? key,
+    required this.title,
+    required this.subTitle,
   }) : super(key: key);
 
   @override
@@ -105,10 +121,10 @@ class _DocumentDetails extends StatelessWidget {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              'Machining units repair',
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
@@ -116,8 +132,8 @@ class _DocumentDetails extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              'Project ID #22667876F',
-              style: TextStyle(
+              subTitle,
+              style: const TextStyle(
                 fontSize: 15,
                 color: Colors.white,
               ),
@@ -138,18 +154,30 @@ class _DocumentDetails extends StatelessWidget {
 }
 
 class _BackgroundImage extends StatelessWidget {
+  final String? picture;
+
+  const _BackgroundImage(this.picture);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
-      child: const SizedBox(
+      child: SizedBox(
         width: double.infinity,
         height: 400,
-        child: FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/400x300/f6f6f6'),
-          fit: BoxFit.cover,
-        ),
+        child: picture == null
+            ? const Image(
+                image: AssetImage('assets/no-image.png'),
+                fit: BoxFit.cover,
+              )
+            : FadeInImage(
+                placeholder: const AssetImage('assets/jar-loading.gif'),
+                imageErrorBuilder:
+                    (BuildContext context, Object obj, stackTrace) {
+                  return const Image(image: AssetImage('assets/no-image.png'));
+                },
+                image: NetworkImage(picture!),
+                fit: BoxFit.cover,
+              ),
       ),
     );
   }

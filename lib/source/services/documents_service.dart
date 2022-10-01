@@ -16,7 +16,10 @@ class DocumentsService extends ChangeNotifier {
     loadDocuments();
   }
 
-  Future loadDocuments() async {
+  Future<List<Document>> loadDocuments() async {
+    isLoading = true;
+    notifyListeners();
+
     final url = Uri.https(_baseUrl, 'documents.json');
     final resp = await http.get(url);
 
@@ -28,6 +31,9 @@ class DocumentsService extends ChangeNotifier {
       documents.add(tempDocument);
     });
 
-    print(documents[0].name);
+    isLoading = false;
+    notifyListeners();
+
+    return documents;
   }
 }

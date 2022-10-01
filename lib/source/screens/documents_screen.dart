@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minka_design_app/source/screens/document_screen.dart';
+
+import 'package:minka_design_app/source/screens/screens.dart';
 
 import 'package:minka_design_app/source/widgets/document_card.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,11 @@ class DocumentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final documentsService = Provider.of<DocumentsService>(context);
+
+    if (documentsService.isLoading) {
+      return const LoadingScreen();
+    }
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -22,11 +28,13 @@ class DocumentsScreen extends StatelessWidget {
       ),
       drawer: const SideMenu(),
       body: ListView.builder(
-          itemCount: 10,
+          itemCount: documentsService.documents.length,
           itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () =>
                   Navigator.pushNamed(context, DocumentScreen.routerName),
-              child: DocumentCard())),
+              child: DocumentCard(
+                document: documentsService.documents[index],
+              ))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add_a_photo_outlined),

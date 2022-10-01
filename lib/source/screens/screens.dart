@@ -2,6 +2,7 @@ export 'package:minka_design_app/source/screens/basic_design.dart';
 export 'package:minka_design_app/source/screens/directions_screen.dart';
 export 'package:minka_design_app/source/screens/document_screen.dart';
 export 'package:minka_design_app/source/screens/home_screen.dart';
+export 'package:minka_design_app/source/screens/loading_screen.dart';
 export 'package:minka_design_app/source/screens/login_screen.dart';
 export 'package:minka_design_app/source/screens/map_screen.dart';
 export 'package:minka_design_app/source/screens/maps_history_screen.dart';
