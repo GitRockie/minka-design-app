@@ -30,8 +30,11 @@ class DocumentsScreen extends StatelessWidget {
       body: ListView.builder(
           itemCount: documentsService.documents.length,
           itemBuilder: (BuildContext context, int index) => GestureDetector(
-              onTap: () =>
-                  Navigator.pushNamed(context, DocumentScreen.routerName),
+              onTap: () {
+                documentsService.selectedProduct =
+                    documentsService.documents[index].copy();
+                Navigator.pushNamed(context, DocumentScreen.routerName);
+              },
               child: DocumentCard(
                 document: documentsService.documents[index],
               ))),

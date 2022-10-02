@@ -10,6 +10,9 @@ class DocumentsService extends ChangeNotifier {
       'minka-app-40353-default-rtdb.europe-west1.firebasedatabase.app';
 
   final List<Document> documents = [];
+
+  Document? selectedProduct;
+
   bool isLoading = true;
 
   DocumentsService() {

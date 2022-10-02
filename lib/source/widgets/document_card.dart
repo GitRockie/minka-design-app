@@ -154,28 +154,24 @@ class _DocumentDetails extends StatelessWidget {
 }
 
 class _BackgroundImage extends StatelessWidget {
-  final String? picture;
+  final String? url;
 
-  const _BackgroundImage(this.picture);
+  const _BackgroundImage(this.url);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
-      child: SizedBox(
+      child: Container(
         width: double.infinity,
         height: 400,
-        child: picture == null
+        child: url == null
             ? const Image(
                 image: AssetImage('assets/no-image.png'),
                 fit: BoxFit.cover,
               )
             : FadeInImage(
                 placeholder: const AssetImage('assets/jar-loading.gif'),
-                imageErrorBuilder:
-                    (BuildContext context, Object obj, stackTrace) {
-                  return const Image(image: AssetImage('assets/no-image.png'));
-                },
-                image: NetworkImage(picture!),
+                image: NetworkImage(url!),
                 fit: BoxFit.cover,
               ),
       ),

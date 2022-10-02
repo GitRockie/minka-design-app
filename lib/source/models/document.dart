@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:minka_design_app/source/models/models.dart';
+
 class Document {
   Document({
     required this.available,
@@ -27,6 +29,7 @@ class Document {
         available: json["available"],
         name: json["name"],
         picture: json["picture"],
+        id: json["id"],
         price: json["price"].toDouble(),
       );
 
@@ -36,4 +39,12 @@ class Document {
         "picture": picture,
         "price": price,
       };
+
+  Document copy() => Document(
+        available: available,
+        name: name,
+        price: price,
+        id: id,
+        picture: picture,
+      );
 }

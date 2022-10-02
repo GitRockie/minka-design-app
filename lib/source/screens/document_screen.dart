@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/services/services.dart';
 import 'package:minka_design_app/source/ui/input_decotations.dart';
 import 'package:minka_design_app/source/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class DocumentScreen extends StatelessWidget {
   static const String routerName = 'document';
@@ -9,13 +11,16 @@ class DocumentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final documentService = Provider.of<DocumentsService>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
-                DocumentImage(),
+                DocumentImage(
+                  url: documentService.selectedProduct?.picture,
+                ),
                 Positioned(
                     top: 60,
                     left: 20,
