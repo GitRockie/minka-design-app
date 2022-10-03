@@ -9,6 +9,11 @@ class DocumentFormProvider extends ChangeNotifier {
 
   DocumentFormProvider(this.document);
 
+  updateAvaliability(bool value) {
+    document?.available = value;
+    notifyListeners();
+  }
+
   bool isValidForm() {
     return formKey.currentState?.validate() ?? false;
   }

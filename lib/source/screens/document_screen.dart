@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:minka_design_app/source/providers/document_form_provider%20.dart';
+import 'package:flutter/services.dart';
+
 import 'package:minka_design_app/source/services/services.dart';
 import 'package:minka_design_app/source/ui/input_decotations.dart';
 import 'package:minka_design_app/source/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/providers.dart';
 
 class DocumentScreen extends StatelessWidget {
   static const String routerName = 'document';
@@ -32,6 +35,7 @@ class _DocumentScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             Stack(
@@ -115,6 +119,9 @@ class _DocumentForm extends StatelessWidget {
             const SizedBox(height: 30),
             TextFormField(
               initialValue: '${document?.price}',
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+              ],
               onChanged: (value) {
                 if (double.tryParse(value) == null) {
                   document?.price = 0;
@@ -124,16 +131,15 @@ class _DocumentForm extends StatelessWidget {
               },
               keyboardType: TextInputType.number,
               decoration: InputDecorations.authInputDecoration(
-                  hintText: '2830 EUR', labelText: 'Price:'),
+                  hintText: '2830', labelText: 'Price:'),
             ),
             const SizedBox(height: 30),
             SwitchListTile.adaptive(
-                value: document!.available,
-                title: const Text('Available'),
-                activeColor: Colors.lightBlue,
-                onChanged: (value) {
-                  //TODO: Pending to create
-                }),
+              value: document!.available,
+              title: const Text('Available'),
+              activeColor: Colors.lightBlue,
+              onChanged: documentForm.updateAvaliability,
+            ),
             const SizedBox(height: 30),
           ],
         )),
