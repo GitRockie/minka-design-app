@@ -31,7 +31,7 @@ class DocumentsScreen extends StatelessWidget {
           itemCount: documentsService.documents.length,
           itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () {
-                documentsService.selectedProduct =
+                documentsService.selectedDocument =
                     documentsService.documents[index].copy();
                 Navigator.pushNamed(context, DocumentScreen.routerName);
               },

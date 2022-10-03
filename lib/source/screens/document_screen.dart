@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minka_design_app/source/providers/document_form_provider%20.dart';
 import 'package:minka_design_app/source/services/services.dart';
 import 'package:minka_design_app/source/ui/input_decotations.dart';
 import 'package:minka_design_app/source/widgets/widgets.dart';
@@ -12,6 +13,23 @@ class DocumentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final documentService = Provider.of<DocumentsService>(context);
+    return ChangeNotifierProvider(
+      child: _DocumentScreenBody(documentService: documentService),
+      create: (_) => DocumentFormProvider(documentService.selectedDocument),
+    );
+  }
+}
+
+class _DocumentScreenBody extends StatelessWidget {
+  const _DocumentScreenBody({
+    Key? key,
+    required this.documentService,
+  }) : super(key: key);
+
+  final DocumentsService documentService;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -19,7 +37,7 @@ class DocumentScreen extends StatelessWidget {
             Stack(
               children: [
                 DocumentImage(
-                  url: documentService.selectedProduct?.picture,
+                  url: documentService.selectedDocument?.picture,
                 ),
                 Positioned(
                     top: 60,
@@ -68,6 +86,10 @@ class _DocumentForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final documentForm = Provider.of<DocumentFormProvider>(context);
+
+    final document = documentForm.document;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -79,18 +101,34 @@ class _DocumentForm extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             TextFormField(
+              initialValue: document?.name,
+              onChanged: (value) => document?.name = value,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'The title is required';
+                }
+                return null;
+              },
               decoration: InputDecorations.authInputDecoration(
                   hintText: 'Document titie', labelText: 'Title:'),
             ),
             const SizedBox(height: 30),
             TextFormField(
+              initialValue: '${document?.price}',
+              onChanged: (value) {
+                if (double.tryParse(value) == null) {
+                  document?.price = 0;
+                } else {
+                  document?.price = double.parse(value);
+                }
+              },
               keyboardType: TextInputType.number,
               decoration: InputDecorations.authInputDecoration(
                   hintText: '2830 EUR', labelText: 'Price:'),
             ),
             const SizedBox(height: 30),
             SwitchListTile.adaptive(
-                value: true,
+                value: document!.available,
                 title: const Text('Available'),
                 activeColor: Colors.lightBlue,
                 onChanged: (value) {

@@ -11,7 +11,7 @@ class DocumentsService extends ChangeNotifier {
 
   final List<Document> documents = [];
 
-  Document? selectedProduct;
+  Document? selectedDocument;
 
   bool isLoading = true;
 
