@@ -47,6 +47,7 @@ class DocumentsService extends ChangeNotifier {
 
     if (document.id == null) {
       //Need to create document
+      await createDocument(document);
     } else {
       //Need to update document
       await updateDocument(document);
@@ -60,11 +61,20 @@ class DocumentsService extends ChangeNotifier {
     final url = Uri.https(_baseUrl, 'documents/${document.id}.json');
     final resp = await http.put(url, body: document.toJson());
     final decodedData = resp.body;
-    print(decodedData);
 
     final index = documents.indexWhere((element) => element.id == document.id);
     documents[index] = document;
     //Update Document List
+    return document.id!;
+  }
+
+  Future<String> createDocument(Document document) async {
+    final url = Uri.https(_baseUrl, 'documents.json');
+    final resp = await http.post(url, body: document.toJson());
+    final decodedData = jsonDecode(resp.body);
+    document.id = decodedData['name'];
+
+    documents.add(document);
     return document.id!;
   }
 }

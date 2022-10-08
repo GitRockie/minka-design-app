@@ -5,6 +5,7 @@ import 'package:minka_design_app/source/screens/screens.dart';
 import 'package:minka_design_app/source/widgets/document_card.dart';
 import 'package:provider/provider.dart';
 
+import '../models/models.dart';
 import '../services/services.dart';
 import '../widgets/side_menu.dart';
 
@@ -39,8 +40,12 @@ class DocumentsScreen extends StatelessWidget {
                 document: documentsService.documents[index],
               ))),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add_a_photo_outlined),
+        onPressed: () {
+          documentsService.selectedDocument =
+              Document(available: false, name: '', price: 0);
+          Navigator.pushNamed(context, DocumentScreen.routerName);
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
