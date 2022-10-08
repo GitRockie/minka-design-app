@@ -33,6 +33,7 @@ class _DocumentScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final documentForm = Provider.of<DocumentFormProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -76,7 +77,13 @@ class _DocumentScreenBody extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          if (!documentForm.isValidForm()) {
+            return;
+          }
+
+          await documentService.saveOrCreateProduct(documentForm.document!);
+        },
         child: const Icon(Icons.save_outlined),
       ),
     );
@@ -101,48 +108,51 @@ class _DocumentForm extends StatelessWidget {
         width: double.infinity,
         decoration: _buildBoxDecoration(),
         child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: documentForm.formKey,
             child: Column(
-          children: [
-            const SizedBox(height: 10),
-            TextFormField(
-              initialValue: document?.name,
-              onChanged: (value) => document?.name = value,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'The title is required';
-                }
-                return null;
-              },
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: 'Document titie', labelText: 'Title:'),
-            ),
-            const SizedBox(height: 30),
-            TextFormField(
-              initialValue: '${document?.price}',
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+              children: [
+                const SizedBox(height: 10),
+                TextFormField(
+                  initialValue: document?.name,
+                  onChanged: (value) => document?.name = value,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'The title is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecorations.authInputDecoration(
+                      hintText: 'Document titie', labelText: 'Title:'),
+                ),
+                const SizedBox(height: 30),
+                TextFormField(
+                  initialValue: '${document?.price}',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^(\d+)?\.?\d{0,2}'))
+                  ],
+                  onChanged: (value) {
+                    if (double.tryParse(value) == null) {
+                      document?.price = 0;
+                    } else {
+                      document?.price = double.parse(value);
+                    }
+                  },
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecorations.authInputDecoration(
+                      hintText: '2830', labelText: 'Price:'),
+                ),
+                const SizedBox(height: 30),
+                SwitchListTile.adaptive(
+                  value: document!.available,
+                  title: const Text('Available'),
+                  activeColor: Colors.lightBlue,
+                  onChanged: documentForm.updateAvaliability,
+                ),
+                const SizedBox(height: 30),
               ],
-              onChanged: (value) {
-                if (double.tryParse(value) == null) {
-                  document?.price = 0;
-                } else {
-                  document?.price = double.parse(value);
-                }
-              },
-              keyboardType: TextInputType.number,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: '2830', labelText: 'Price:'),
-            ),
-            const SizedBox(height: 30),
-            SwitchListTile.adaptive(
-              value: document!.available,
-              title: const Text('Available'),
-              activeColor: Colors.lightBlue,
-              onChanged: documentForm.updateAvaliability,
-            ),
-            const SizedBox(height: 30),
-          ],
-        )),
+            )),
       ),
     );
   }

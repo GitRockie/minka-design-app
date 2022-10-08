@@ -11,9 +11,10 @@ class DocumentsService extends ChangeNotifier {
 
   final List<Document> documents = [];
 
-  Document? selectedDocument;
+  late Document? selectedDocument;
 
   bool isLoading = true;
+  bool isSaving = false;
 
   DocumentsService() {
     loadDocuments();
@@ -38,5 +39,32 @@ class DocumentsService extends ChangeNotifier {
     notifyListeners();
 
     return documents;
+  }
+
+  Future saveOrCreateProduct(Document document) async {
+    isSaving = true;
+    notifyListeners();
+
+    if (document.id == null) {
+      //Need to create document
+    } else {
+      //Need to update document
+      await updateDocument(document);
+    }
+
+    isSaving = false;
+    notifyListeners();
+  }
+
+  Future<String> updateDocument(Document document) async {
+    final url = Uri.https(_baseUrl, 'documents/${document.id}.json');
+    final resp = await http.put(url, body: document.toJson());
+    final decodedData = resp.body;
+    print(decodedData);
+
+    final index = documents.indexWhere((element) => element.id == document.id);
+    documents[index] = document;
+    //Update Document List
+    return document.id!;
   }
 }

@@ -15,6 +15,9 @@ class DocumentFormProvider extends ChangeNotifier {
   }
 
   bool isValidForm() {
+    print(document!.name);
+    print(document!.price);
+    print(document!.available);
     return formKey.currentState?.validate() ?? false;
   }
 }

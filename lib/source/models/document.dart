@@ -4,14 +4,12 @@
 
 import 'dart:convert';
 
-import 'package:minka_design_app/source/models/models.dart';
-
 class Document {
   Document({
     required this.available,
     required this.name,
-    picture,
-    id,
+    this.picture,
+    this.id,
     required this.price,
   });
 
