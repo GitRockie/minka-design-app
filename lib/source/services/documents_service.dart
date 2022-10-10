@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,8 @@ class DocumentsService extends ChangeNotifier {
   final List<Document> documents = [];
 
   late Document? selectedDocument;
+
+  File? newPictureFile;
 
   bool isLoading = true;
   bool isSaving = false;
@@ -76,5 +79,12 @@ class DocumentsService extends ChangeNotifier {
 
     documents.add(document);
     return document.id!;
+  }
+
+  void updateSelectedDocumentImage(String path) {
+    selectedDocument?.picture = path;
+    newPictureFile = File.fromUri(Uri(path: path));
+
+    notifyListeners();
   }
 }
