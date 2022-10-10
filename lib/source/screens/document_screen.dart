@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:minka_design_app/source/services/services.dart';
 import 'package:minka_design_app/source/ui/input_decotations.dart';
@@ -58,8 +59,18 @@ class _DocumentScreenBody extends StatelessWidget {
                     top: 60,
                     right: 20,
                     child: IconButton(
-                        onPressed: () {
-                          //TODO: Camera or Galery
+                        onPressed: () async {
+                          final ImagePicker _picker = ImagePicker();
+                          final XFile? image = await _picker.pickImage(
+                              source: ImageSource.camera, imageQuality: 100);
+
+                          if (image == null) {
+                            print('Seems like nothing has been selected');
+                            return;
+                          }
+
+                          print(
+                              'You picked the image ${image.path} with success!');
                         },
                         icon: const Icon(
                           Icons.camera_alt_outlined,
