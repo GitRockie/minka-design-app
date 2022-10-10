@@ -79,30 +79,6 @@ class _DocumentScreenBody extends StatelessWidget {
                           size: 40,
                           color: Colors.white,
                         ))),
-                Positioned(
-                    top: 60,
-                    right: 80,
-                    child: IconButton(
-                        onPressed: () async {
-                          final ImagePicker _picker = ImagePicker();
-                          final XFile? image = await _picker.pickImage(
-                              source: ImageSource.gallery, imageQuality: 100);
-
-                          if (image == null) {
-                            print('Seems like nothing has been selected');
-                            return;
-                          }
-
-                          print(
-                              'You picked the image ${image.path} with success!');
-                          documentService
-                              .updateSelectedDocumentImage(image.path);
-                        },
-                        icon: const Icon(
-                          Icons.collections_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ))),
               ],
             ),
 
